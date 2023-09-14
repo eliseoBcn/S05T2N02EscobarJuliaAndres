@@ -1,1 +1,1 @@
-# S05T2N01EscobarJuliaAndres
+# Tarea S5.02 Juego de Dados
