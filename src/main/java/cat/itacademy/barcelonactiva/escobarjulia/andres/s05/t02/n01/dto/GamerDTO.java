@@ -1,4 +1,4 @@
-package cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain;
+package cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto;
 
 
 import javax.persistence.CascadeType;
@@ -29,35 +29,22 @@ import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
 import java.util.Calendar;
-	
-@Entity
-@Table(name = "gamer")
+ 
 
-public class Gamer {
+public class GamerDTO {
 
-	public Gamer() {
+	public GamerDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+ 
 	private long id;
 	
-	@Column(name = "nombre", nullable = false ,length = 150, unique = true)	
 	private String nombre;
-
-	@Column(name = "fechaalta", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd" )
-    @CreationTimestamp
 	private Date fechaalta;
-	
-	
-	@Column(name = "porcentajeExito")
 	private double porcentajeExito;
 	private int partidasjugadas;
 	private int partidasganadas;	
-
 	
 	public long getId() {
 		return id;
@@ -77,7 +64,7 @@ public class Gamer {
 	public void setFechaalta(Date fechaalta) {
 		this.fechaalta = fechaalta;
 	}
- 
+
 	
 	public double getPorcentajeExito() {
 		return porcentajeExito;
@@ -98,29 +85,4 @@ public class Gamer {
 		this.partidasganadas = partidasganadas;
 	}
 
-
-	@OneToMany(mappedBy="gamer",cascade = CascadeType.ALL ,fetch = FetchType.EAGER  , orphanRemoval = true)
-	private  List<TiradasGame> tiradasGame;
-
-//	@JsonProperty(access = Access.WRITE_ONLY)
- 	public void eliminares() {
-		for ( int a = 0; a < tiradasGame.size() ; a++) {
-			tiradasGame.remove(a);
-		}
- 
-}
-
-	public List<TiradasGame>  getGames() {
-			return tiradasGame;
-	}
-   	public void setGames(List<TiradasGame>  tiradasGames) {
-			this.tiradasGame  = tiradasGames;
-//			tiradaGames.forEach( tiradasGame --> tiradasGame );
-	}
-		@Override
-		public String toString() {
-			return "Gamer [id=" + id + ", nombre=" + nombre + ", fechaalta=" + fechaalta + ", tiradasGame="
-					+ tiradasGame + "]";
-		}
- 
 }

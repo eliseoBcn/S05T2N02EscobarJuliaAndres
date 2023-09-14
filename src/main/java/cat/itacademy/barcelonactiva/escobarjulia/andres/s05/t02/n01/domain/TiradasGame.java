@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Table(name = "tiradas")
 
 public class TiradasGame {
-
-    
+   
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long tiradas;
@@ -30,17 +29,26 @@ public class TiradasGame {
 	}
 	public TiradasGame() {
 		super();
-		
 	}
 	
 	@Column(name="dado1")
  	private int dado1;
 
-
-
 	@Column(name="dado2")
 	private int dado2;
 
+	@Column(name="resultado")
+	private String  resultado;
+	
+	
+	public String  getResultado() {
+		return resultado;
+	}
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
+	}
+
+	
 	public long getTiradas() {
 		return tiradas;
 	}
@@ -48,14 +56,7 @@ public class TiradasGame {
 	public void setTiradas(int tiradas) {
 		this.tiradas = tiradas;
 	}
-
-//	public Long getGamer() {
-//		return gamerId;
-//	}
-//
-//	public void setGamer(Long id) {
-//		this.gamerId = id;
-//	}
+ 
 
 	public int getDado1() {
 		return dado1;
@@ -72,17 +73,10 @@ public class TiradasGame {
 	public void setDado2(int dado2) {
 		this.dado2 = dado2;
 	}
-	
-
-    
-	  @ManyToOne
-      @JoinColumn(name = "gamer_id", nullable = false, updatable = false)
-       private Gamer  gamer;
-    
-    
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="FK_GAMER", nullable=false)
-//    private Gamer gamer;
+	@ManyToOne
+    @JoinColumn(name = "gamer_id", nullable = false, updatable = false)
+    private Gamer  gamer;
+ 
 }
 	
 

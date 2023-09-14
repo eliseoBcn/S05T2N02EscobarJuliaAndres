@@ -11,5 +11,7 @@ public interface TiradasService {
 	  TiradasGame  gamerTirada(Long  id);	 
 	  
 	  List<TiradasGame>   jugadorTiradas(Long  id);	 
+
+	  boolean  BorrarTiradas(Long  id);	 
 	 
 }
