@@ -1,16 +1,38 @@
 # Tarea S5.02 Juego de Dados
 
 
+Realizamos la version del Juego de Datos  utilizando   la base de datos Mongo.
+
+
+ 
+En este juego al Borrar las tiradas mostramos el contador de las jugadas Borradas.
+
+
+
+##  Listado de Jugadores.  Aviso Inicio del Torneo sin Jugadores.
+
+
+
+
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/1a4f7902-3262-4b55-b346-ad0b9be5fbbf)
+
+
+
+
 
 
 ##  ALta Jugador 
 
 
 
-    
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/f10278ce-84e2-4730-b25d-bd78631ef630)
+
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/2975911e-57a5-44b7-b983-2767eadead7f)
+
+
+
+
 
 
 
@@ -22,7 +44,7 @@
   
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/77992b64-f688-48c5-b8e0-ae6e1b5c365e)
+ ![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/06b8d665-11ab-4726-a420-17443f9ec4d2)
 
 
 
@@ -30,7 +52,31 @@
 
 
 
-##  Jugador id=1.Nueva tirada.
+
+##  Jugador id= "651210b9358d776c03a0c544".Nueva tirada.
+
+
+
+
+
+
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/9e254b30-c936-4938-ab1a-016885d9edc6)
+
+ 
+
+
+
+
+
+
+##  Jugador id="651210b9358d776c03a0c544".Tirada GANADORA. Tiramos sucesivamente y en la partida número  7 ganamos.
+
+
+
+
+
+
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/8525d4b9-25e1-4af3-a11e-ce5ce3acdc51)
 
 
 
@@ -38,32 +84,15 @@
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/51e9a232-0d5a-48f3-98cc-5ee7261247e3)
 
-
-
-
-
-
-##  Jugador id=1.Tirada GANADORA. Tiramos sucesivamente y en la número  10 ganamos.
-
-
-
-
-
-
-
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/f943582b-0f2c-4a0c-9347-0b9f3c051312)
-
-
-
-##  Tiradas Jugador id=2.  Listado.
+##  Tiradas del Jugador id="65121235358d776c03a0c54c" ( Segundo Jugador dado de alta) .  Listado de 3 tiradas y la ultima ganadora.
 
     
 
-  
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/65af19df-202f-4019-a6fe-c1af0147a0c5)
+  
+ ![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/ac53e1c1-38c3-4fb9-ac31-9a0cc761a0c1)
+
 
 
   
@@ -77,11 +106,12 @@
   
 
   
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/754f96e4-fd58-45e5-8b1e-1f3817d8517a)
 
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/6449349e-89e8-40a5-9ee5-0f8c93aaa66f)
+ 
 
 
 
@@ -95,7 +125,7 @@
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/219275d5-38ea-4ab4-8f08-27262eaf640e)
+ ![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/68d0baf3-089f-41f9-b1a1-42874220d1a5)
 
 
 
@@ -104,27 +134,36 @@
 
 
 
-##  Jugador id=1.  Jugador PERDEDOR:
+
+##   Jugador PERDEDOR : "Sergio Busquets"
 
 
 
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/1362f185-0463-41d5-8893-1372a86c3473)
+   
+
+
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/64d527ed-87e2-4431-b3d5-98bddb5bb1f9)
+
+
+
+ 
 
 
 
 
 
 
-##  Jugador id=3.  Jugador GANADOR .
+##   Jugador GANADOR : "Maradona".
 
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/3d8d54c3-87d4-45bd-9ff0-e73df94678e8)
+ 
 
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/ecce5f3e-f6af-44d3-8ad8-de872d1f88cc)
 
 
 
@@ -134,42 +173,47 @@
 
 
 
-     
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/d4248cb4-6e80-4809-8a4f-1d9b5c7c9a06)
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/837e8f3b-bf94-4367-8bb6-b8a5126ab874)
+    
+
+
 
 
 
 
       
-## BASE DE DATOS . Todas las tiradas ..
-
-
-
-
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/601128df-92f7-4bc4-867c-189c1e25f053)
-
-
-
-
-## Jugador id=2.  Borrar tiradas.
+## BASE DE DATOS . Pantalla de Las primeras tiradas. Ver TOTAL DE TIRADAS = 26 documentos
 
 
 
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/72819885-7c7d-4178-b800-d561e4add312)
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/f89215ce-77c9-49f5-bd02-38d556c08021)
 
 
 
 
 
 
+## Jugador id="65121235358d776c03a0c54c".  Borrar tiradas.Mensaje con las 3 tiradas Borradas.
 
 
-![image](https://github.com/eliseoBcn/S05T2N01EscobarJuliaAndres/assets/125320599/c5b07926-3790-40d0-bdf2-cb9102a6c143)
+
+
+
+ 
+![image](https://github.com/eliseoBcn/S05T2N02EscobarJuliaAndres/assets/125320599/793cb25a-0543-41fa-b150-1a6eefe83a7c)
+
+
+
+
+
+
+
+ 
 
 
 
