@@ -26,13 +26,16 @@ public class TiradasServiceImpl implements TiradasService  {
 	}
 
 
-	public TiradasGame gamerTirada(Long  id) {
+	public TiradasGame gamerTirada(String  id) {
 		// TODO Auto-generated method stub
 		
 		Optional<Gamer>   gamero = gamerRepository.findById(id);
 		Gamer gamer =   gamero.get();
 
-		TiradasGame tiradasGame = new TiradasGame(gamer );
+		TiradasGame tiradasGame = new TiradasGame( );
+		
+		tiradasGame.setJugadorId(id);
+//		TiradasGame tiradasGame = new TiradasGame();
 
 //		tiradasGame.setGamer(id);
 		int numero = (int)(Math.random()*6+1);
@@ -53,9 +56,6 @@ public class TiradasServiceImpl implements TiradasService  {
 			tiradasGame.setResultado("perdida");
 		}
 			
-		System.out.println(" pg " +  pg );
-		System.out.println(" pj " +  pj );
-
  
 
 		gamer.setPartidasganadas(pg);
@@ -64,24 +64,37 @@ public class TiradasServiceImpl implements TiradasService  {
 		double por1 = ( pg*100) /pj; 
 		gamer.setPorcentajeExito( por1 );
 		tiradasRepository.save(tiradasGame);
+		gamerRepository.save(gamer);
+		System.out.println("------> pg " +  pg );
+		System.out.println("------> pj " +  pj );
+		System.out.println("------> porcentaje  " +  por1 );
+
+		
 		
 		return tiradasGame;
 	}
 
+ 
+
 	@Override
-	public List<TiradasGame> jugadorTiradas(Long id) {
+	public List<TiradasGame> jugadorTiradas(String  id) {
 		// TODO Auto-generated method stub
-		
 	
-		return null;
+		Optional<Gamer>  gamer = gamerRepository.findById(id);
+		
+		List<TiradasGame>  tiradasGames =  tiradasRepository.findByjugadorId(id);
+		 
+
+		return   tiradasGames;
 	}
 
-
 	@Override
-	public boolean BorrarTiradas(Long id) {
-		// TODO Auto-generated method stub
-//	 tiradasRepository.delete
+	public long BorrarTiradas(String id) {
+
+		long  numeroTiradasJugador = tiradasRepository.countTiradasJugador(id);
+		System.out.println( "metodo BorrarTiradas " + numeroTiradasJugador  );
+ 	     tiradasRepository.deleteByjugadorId(id);
 	
-		 return true;
+		 return  numeroTiradasJugador;
 	}
 }

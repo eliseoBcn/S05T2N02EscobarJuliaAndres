@@ -1,8 +1,6 @@
 package cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.controllers;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain.Gamer;
+ 
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain.TiradasGame;
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.GamerDTO;
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.JugadorPorcentajeDTO;
@@ -36,6 +34,8 @@ public class DadosGame {
 	@PostMapping("/players")
 	public ResponseEntity<?> createPlayer(@RequestBody GamerDTO gamer) {
 
+		
+	 
 		String mensaje = null;
 		boolean  existeGamer = gamerService.existenombreGamer( gamer.getNombre() );
 		
@@ -61,7 +61,7 @@ public class DadosGame {
 	}
 	
 	@PostMapping("/players/{id}/games/")
-	public ResponseEntity<?> createPartida(@PathVariable("id") Long  id ){
+	public ResponseEntity<?> createPartida(@PathVariable("id") String  id ){
 		
  		 // Controlamos existe Jugador 
 			if ( !gamerService.existeGamer(id) ) {
@@ -87,7 +87,7 @@ public class DadosGame {
 
 	}
 	@GetMapping("/players/{id}/games")
-	public ResponseEntity<?> JugadasPlayer(@PathVariable("id") Long  id ){
+	public ResponseEntity<?> JugadasPlayer(@PathVariable("id") String   id ){
 
 		 // Controlamos existe Jugador 
 		if ( !gamerService.existeGamer(id) ) {
@@ -95,24 +95,26 @@ public class DadosGame {
 						HttpStatus.NOT_FOUND);
 		};
 		
-		List<TiradasGame> tiradasgamer = gamerService.jugadorTiradas(id);
-//		System.out.println (  listgamer.forEach( Gamer --> gamerService.) );
+		List<TiradasGame> tiradasgamer = tiradasService.jugadorTiradas(id);
+
 	
 		return new ResponseEntity<>( tiradasgamer,  HttpStatus.OK);
 	}
 
 	@DeleteMapping("/players/{id}/games")
-	public ResponseEntity<?> BorrarJugadas(@PathVariable("id") Long  id ){
+	public ResponseEntity<?> BorrarJugadas(@PathVariable("id") String   id ){
 
 				 // Controlamos existe Jugador 
 				if ( !gamerService.existeGamer(id) ) {
 					return new ResponseEntity<>( new MensajeError(404, "no encontrado id ", " El Id introducido es " + id ),
 								HttpStatus.NOT_FOUND);
 				};
-				boolean  tiradasgamer = gamerService.BorrarJugadasGamerById(id);
- 
-			
-				return new ResponseEntity<>( "" , HttpStatus.OK);
+//				boolean  tiradasgamer = gamerService.BorrarJugadasGamerById(id);
+				long  tiradasGamer = tiradasService.BorrarTiradas(id);
+				 
+				String mensaje = "Se han borrado " + tiradasGamer + " jugadas del Jugador "; 
+					mensaje = mensaje +  id;	
+				return new ResponseEntity<>( mensaje  , HttpStatus.OK);
 	}
  
 	@GetMapping("/players/ranking")

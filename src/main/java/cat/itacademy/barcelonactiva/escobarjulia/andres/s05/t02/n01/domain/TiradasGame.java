@@ -1,44 +1,56 @@
 package cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain;
 
-import java.sql.Date;
+ 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-@Entity
-@Table(name = "tiradas")
-
+@Document(collection = "tiradas")
 public class TiradasGame {
    
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long tiradas;
+	private String tiradas;
+
 	
-//	@Column(name="gamerId",unique = false)
-//	private Long  gamerId;
- 
-	public TiradasGame(Gamer gamer ) {
-		this.gamer = gamer;
-	}
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String jugadorId;
+
+	
 	public TiradasGame() {
 		super();
 	}
 	
-	@Column(name="dado1")
- 	private int dado1;
+ 
+//	public TiradasGame(Gamer gamer ) {
+//		this.gamer = gamer;
+//	}
 
-	@Column(name="dado2")
+ 	public TiradasGame(String tiradas, int dado1, int dado2, String resultado, String jugadorId) {
+		this.tiradas = tiradas;
+		this.dado1 = dado1;
+		this.dado2 = dado2;
+		this.resultado = resultado;
+		this.jugadorId = jugadorId;
+	}
+
+
+	public String getJugadorId() {
+		return jugadorId;
+	}
+
+
+	public void setJugadorId(String jugadorId) {
+		this.jugadorId = jugadorId;
+	}
+
+
+	private int dado1;
+
 	private int dado2;
 
-	@Column(name="resultado")
-	private String  resultado;
+    private String  resultado;
 	
 	
 	public String  getResultado() {
@@ -49,11 +61,11 @@ public class TiradasGame {
 	}
 
 	
-	public long getTiradas() {
+	public String getTiradas() {
 		return tiradas;
 	}
 
-	public void setTiradas(int tiradas) {
+	public void setTiradas(String tiradas) {
 		this.tiradas = tiradas;
 	}
  
@@ -73,9 +85,7 @@ public class TiradasGame {
 	public void setDado2(int dado2) {
 		this.dado2 = dado2;
 	}
-	@ManyToOne
-    @JoinColumn(name = "gamer_id", nullable = false, updatable = false)
-    private Gamer  gamer;
+//    private Gamer  gamer;
  
 }
 	

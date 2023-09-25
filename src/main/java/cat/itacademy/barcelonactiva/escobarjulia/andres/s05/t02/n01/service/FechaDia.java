@@ -2,11 +2,7 @@ package cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-
-
 
 public class FechaDia {
 

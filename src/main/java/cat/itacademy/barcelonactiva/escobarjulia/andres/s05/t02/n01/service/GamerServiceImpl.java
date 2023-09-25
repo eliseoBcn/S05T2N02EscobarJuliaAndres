@@ -9,46 +9,44 @@ import org.springframework.stereotype.Service;
 
  
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain.Gamer;
-import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.domain.TiradasGame;
-import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.ConsultaCampoByID;
-import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.ConsultaCampoByID2;
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.GamerDTO;
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.dto.JugadorPorcentajeDTO;
 import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.repository.GamersRepository;
-import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.repository.TiradasRepository;
-
+import cat.itacademy.barcelonactiva.escobarjulia.andres.s05.t02.n01.repository.PorcentajeMedioJugadores;
+ 
 @Service
 public class GamerServiceImpl implements GamerService  {
 
 	
     @Autowired
     private GamersRepository gamersRepository;
-    
-    @Autowired
-    private TiradasRepository tiradasRepository;
 	
 	public GamerServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public long AltaGamer(GamerDTO  gamerdto) {
+	public  String  AltaGamer(GamerDTO  gamerdto) {
 		// TODO Auto-generated method stub
 
- 	       long gamerId=0;
+ 	      String gamerId="";
  	      FechaDia fechadia = null;
  	       if(gamerdto.getFechaalta() == null ) {
  	    	   fechadia = new FechaDia();
  	       }
+ 	       
 		   Gamer gamer = new Gamer();
 		   
 		   gamer.setNombre(gamerdto.getNombre());
 
-//		   gamer.setFechaalta(fechadia);
+		   gamer.setFechaalta(fechadia.getFechadia());
 		   gamersRepository.save(gamer);
+		   
  	       gamerId=gamer.getId();
 	       gamerdto.setId(gamerId);
 	       gamerdto.setFechaalta(gamer.getFechaalta());
 	       
+	       
+//	       Gamer game2 = gamersRepository.returnIntegerFromDB(String id);
 	       return gamerId;
   
 	}
@@ -78,23 +76,9 @@ public class GamerServiceImpl implements GamerService  {
         return  gamerDTO;
 	}
 
-	@Override
-	public List<TiradasGame> jugadorTiradas(Long id) {
-		// TODO Auto-generated method stub
-		
-		Optional<Gamer>  gamer = gamersRepository.findById(id);
-		List<TiradasGame>  tiradasGames = null;
-		
-		if (gamer.isPresent()) {
-			tiradasGames = gamer.get().getGames();
-		}
-			
-		return   tiradasGames;
-	}
-
 
 	@Override
-	public boolean existeGamer(Long id) {
+	public boolean existeGamer(String  id) {
 		// TODO Auto-generated method stub
 		Optional<Gamer>  gamer = gamersRepository.findById(id);
 		if (gamer.isPresent()) {
@@ -114,7 +98,7 @@ public class GamerServiceImpl implements GamerService  {
 		
 	}
 	@Override
-	public Gamer BuscaJugadorById(Long id) {
+	public Gamer BuscaJugadorById(String  id) {
 		// TODO Auto-generated method stub
 
 		System.out.println(" BuscaJugadorById(Long id)" +  id  );
@@ -131,21 +115,21 @@ public class GamerServiceImpl implements GamerService  {
 		return null;
 	}
  
-	public boolean BorrarJugadasGamerById(Long id) {
+	public boolean BorrarJugadasGamerById(String id) {
 		// TODO Auto-generated method stub
 		
 		Optional<Gamer>  gameroptional =  gamersRepository.findById(id);
 		
 		Gamer gamer  = gameroptional.get();
 //		if (gamer.isPresent()) {
-		gamer.eliminares();
+	//	gamer.eliminares();
 
-			System.out.println("***********    partidad del jugador " + gamer.getGames() );
+//			System.out.println("***********    partidad del jugador " + gamer.getGames() );
  
  
 			
 			gamersRepository.save(gamer);
-			System.out.println("despues de grabar " + gamer.getGames() );
+//			System.out.println("despues de grabar " + gamer.getGames() );
 			
 			return true;
  
@@ -154,9 +138,10 @@ public class GamerServiceImpl implements GamerService  {
 	public double  porcentajesmedios() {
 		// TODO Auto-generated method stub
 		
-
-		return   gamersRepository.findByCaros();
-		
+ 	 PorcentajeMedioJugadores  porcentajeMedioJugadores = gamersRepository.porcentajeExitoMedio();
+	
+ 	 return 	porcentajeMedioJugadores.getMediaPorcentajeExito();
+ 	 
 	}
 	@Override
 	public List<JugadorPorcentajeDTO>  JugadorGanador() {
@@ -166,10 +151,14 @@ public class GamerServiceImpl implements GamerService  {
 		// TODO Auto-generated method stub
 // 		ConsultaCampoByID jugadorGanadorID = gamersRepository.findByIdGanador();
 //		Gamer  jugador = BuscaJugadorById(jugadorGanadorID.getId());
- 		List<Gamer> jugadorGanadorID = gamersRepository.findByIdGanador();
+ 		Gamer  gamer  = gamersRepository.findByIdGanador();
  		List<JugadorPorcentajeDTO>  jugadorPorcentajeDTO = new ArrayList<>();
  		
- 		 for(Gamer  gamer :jugadorGanadorID) {
+// 		 for(Gamer  gamer :jugadorGanadorID) {
+// 			Gamer gamer = jugadorGanadorID.get(0);
+ 			
+ //			gamer  = gamersRepository.findTopByOrderByporcentajeExitoDesc();
+
  			JugadorPorcentajeDTO jugadorDTO = null;
  			jugadorDTO = new JugadorPorcentajeDTO();
  			jugadorDTO.setFechaalta(gamer.getFechaalta());
@@ -177,26 +166,25 @@ public class GamerServiceImpl implements GamerService  {
  			jugadorDTO.setNombre(gamer.getNombre());;
  			jugadorDTO.setPorcentajeExito(gamer.getPorcentajeExito());
  			jugadorPorcentajeDTO.add(jugadorDTO);
- 		    }
- 		
+// 		    }
 		return jugadorPorcentajeDTO;
 	}
 	
 	public List<JugadorPorcentajeDTO>  JugadorPerdedor() {
 		// TODO Auto-generated method stub
- 		List<Gamer> jugadorPerdedorID = gamersRepository.findByIdPerdedor();
-
+ 		Gamer   gamer  = gamersRepository.findByIdPerdedor();
+ //		double      min  = gamersRepository.findMin();
  		List<JugadorPorcentajeDTO>  jugadorPorcentajeDTO = new ArrayList<>();
  		
-		 for(Gamer  gamer :jugadorPerdedorID) {
+//		 for(Gamer  gamer :jugadorPerdedorID) {
 			JugadorPorcentajeDTO jugadorDTO = null;
-			jugadorDTO = new JugadorPorcentajeDTO();
+			jugadorDTO = new JugadorPorcentajeDTO();	
 			jugadorDTO.setFechaalta(gamer.getFechaalta());
 			jugadorDTO.setId(gamer.getId());
 			jugadorDTO.setNombre(gamer.getNombre());;
 			jugadorDTO.setPorcentajeExito(gamer.getPorcentajeExito());
 			jugadorPorcentajeDTO.add(jugadorDTO);
-		    }
+//		    }
 		
 		return jugadorPorcentajeDTO;
 		
